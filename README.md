@@ -34,6 +34,65 @@ mkdir -p ~/.config/devin/skills/java-code-analyzer
 cp .devin/skills/java-code-analyzer/SKILL.md ~/.config/devin/skills/java-code-analyzer/
 ```
 
+## Central Repository with Submodules
+
+This repository serves as a central hub for Java development projects using the Devin CLI Java Code Analyzer skill. Related projects are included as Git submodules for convenient access and development.
+
+### Current Submodules
+
+- **[sandbox-interview](projects/sandbox-interview)** - Java interview sandbox project
+
+### Managing Submodules
+
+#### Clone with Submodules
+```bash
+git clone --recursive https://github.com/darcskull/java-code-analyzer-skill.git
+```
+
+#### Initialize Submodules (if cloned without --recursive)
+```bash
+git submodule update --init --recursive
+```
+
+#### Update Submodules
+```bash
+# Update all submodules to latest commit
+git submodule update --remote
+
+# Update specific submodule
+cd projects/sandbox-interview
+git pull origin main
+cd ../..
+git add projects/sandbox-interview
+git commit -m "Update sandbox-interview submodule"
+```
+
+#### Working with Submodules
+```bash
+# Navigate to a submodule
+cd projects/sandbox-interview
+
+# Make changes in the submodule
+git add .
+git commit -m "Your changes"
+git push origin main
+
+# Update the parent repository to track the new commit
+cd ../..
+git add projects/sandbox-interview
+git commit -m "Update sandbox-interview to latest commit"
+```
+
+### Adding New Submodules
+
+To add a new Java project as a submodule:
+
+```bash
+git submodule add https://github.com/USERNAME/PROJECT-NAME.git projects/PROJECT-NAME
+git add .gitmodules projects/PROJECT-NAME
+git commit -m "Add PROJECT-NAME as submodule"
+```
+
 ## Usage
 
 Once installed, invoke the skill in Devin CLI:
@@ -143,6 +202,7 @@ This project includes comprehensive documentation for AI agents, governance, and
 
 - **[Agents.md](Agents.md)** - AI agent behavior rules and guidelines
 - **[Governance](docs/governance/governance.md)** - Project governance policies and procedures
+- **[Submodule Management](docs/submodule-management.md)** - Guide for managing Git submodules
 - **[Knowledge Base](docs/knowledge-base/)** - Reference materials and best practices
   - [Java Coding Conventions](docs/knowledge-base/java-best-practices/coding-conventions.md)
   - [Design Patterns](docs/knowledge-base/design-patterns/common-patterns.md)
