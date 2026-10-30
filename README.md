@@ -1,37 +1,59 @@
-# Java Code Analyzer - Devin Skill
+# Code Analyzer Skills - Devin CLI
 
-A Devin CLI skill for analyzing and explaining Java code, identifying issues, and suggesting improvements.
+A collection of Devin CLI skills for comprehensive code analysis across multiple programming languages.
 
 ## About
 
-This skill extends Devin CLI with specialized Java code analysis capabilities. When invoked, it provides comprehensive insights into Java codebases including:
+This repository extends Devin CLI with specialized code analysis capabilities for Java and Python. When invoked, these skills provide comprehensive insights into codebases including:
 
+### Java Code Analyzer
 - **Code Structure & Architecture**: Class relationships, inheritance hierarchies, design patterns
 - **Code Quality**: Code smells, anti-patterns, naming conventions, method complexity
-- **Potential Issues**: Bugs, thread safety concerns, security vulnerabilities, performance bottlenecks
-- **Best Practices**: Java best practices, exception handling, collection usage, logging
-- **Dependencies**: Unused imports, deprecated APIs, external dependencies
+- **Security**: SQL injection, XSS, authentication, proper exception handling
+- **Performance**: String operations, collections, database optimization, memory management
+- **Design Patterns**: Singleton, Factory, Builder, Strategy, Observer, DAO, DTO, Service Layer
+- **Testing**: Unit tests, integration tests, test coverage
+- **Best Practices**: Java conventions, proper resource management, logging
+
+### Python Code Analyzer
+- **Code Structure & Architecture**: Module organization, package structure, framework patterns
+- **Code Quality**: PEP 8 compliance, naming conventions, type hints, docstrings
+- **Security**: SQL injection, command injection, input validation, dependency vulnerabilities
+- **Performance**: List comprehensions, data structures, generators, async/await
+- **Design Patterns**: Singleton, Factory, Strategy, Observer, Decorator, Context Manager
+- **Testing**: pytest, unittest, fixtures, test coverage
+- **Best Practices**: Python idioms, proper exception handling, context managers
 
 ## Installation
 
 ### Project-Specific Installation
 
 1. Clone this repository
-2. The skill is located in `.devin/skills/java-code-analyzer/`
-3. It will be automatically available when using Devin CLI in this project
+2. The skills are located in `.devin/skills/`
+3. They will be automatically available when using Devin CLI in this project
 
 ### Global Installation (Available in All Projects)
 
 **Windows:**
 ```bash
+# Java Code Analyzer
 mkdir %APPDATA%\devin\skills\java-code-analyzer
 copy .devin\skills\java-code-analyzer\SKILL.md %APPDATA%\devin\skills\java-code-analyzer\
+
+# Python Code Analyzer
+mkdir %APPDATA%\devin\skills\python-code-analyzer
+copy .devin\skills\python-code-analyzer\SKILL.md %APPDATA%\devin\skills\python-code-analyzer\
 ```
 
 **Linux/macOS:**
 ```bash
+# Java Code Analyzer
 mkdir -p ~/.config/devin/skills/java-code-analyzer
 cp .devin/skills/java-code-analyzer/SKILL.md ~/.config/devin/skills/java-code-analyzer/
+
+# Python Code Analyzer
+mkdir -p ~/.config/devin/skills/python-code-analyzer
+cp .devin/skills/python-code-analyzer/SKILL.md ~/.config/devin/skills/python-code-analyzer/
 ```
 
 ## Central Repository with Submodules
@@ -95,6 +117,8 @@ git commit -m "Add PROJECT-NAME as submodule"
 
 ## Usage
 
+### Java Code Analyzer
+
 Once installed, invoke the skill in Devin CLI:
 
 ```bash
@@ -113,21 +137,47 @@ Or analyze a specific package:
 /java-code-analyzer src/main/java/com/example/
 ```
 
+### Python Code Analyzer
+
+Invoke the Python code analyzer:
+
+```bash
+/python-code-analyzer
+```
+
+Specify a file or pattern to analyze:
+
+```bash
+/python-code-analyzer src/main/python/example/module.py
+```
+
+Or analyze a specific package:
+
+```bash
+/python-code-analyzer src/main/python/example/
+```
+
 ## Features
 
 ### Structured Analysis Output
 
-The skill provides a structured analysis including:
+Both skills provide a structured analysis including:
 
 - **Summary**: Overview of the codebase or file
-- **Architecture**: Class relationships and design patterns
+- **Architecture**: Class/module relationships and design patterns
+- **Code Quality Assessment**: Naming conventions, code smells, documentation
+- **Security Findings**: Vulnerabilities with severity levels
+- **Performance Analysis**: Optimization opportunities
+- **Design Patterns**: Pattern identification and implementation
+- **Testing Assessment**: Test coverage and quality
 - **Findings**: Strengths, issues (with severity), and suggestions
 - **Code Examples**: Before/after examples for improvements
+- **Action Items**: Prioritized improvement list
 - **File References**: Specific files and line numbers with clickable citations
 
 ### Auto-Approved Tools
 
-The skill has the following tools auto-approved:
+Both skills have the following tools auto-approved:
 - `read` - Read file contents
 - `grep` - Search for patterns in code
 - `glob` - Find files matching patterns
@@ -135,11 +185,13 @@ The skill has the following tools auto-approved:
 
 ### Triggers
 
-The skill can be invoked by:
-- User: `/java-code-analyzer`
-- Model: Auto-invoked when the AI detects Java code analysis needs
+The skills can be invoked by:
+- User: `/java-code-analyzer` or `/python-code-analyzer`
+- Model: Auto-invoked when the AI detects code analysis needs
 
 ## Example Output
+
+### Java Code Analyzer Example
 
 ```
 ### Summary
@@ -150,6 +202,14 @@ This codebase contains a Spring Boot application with 3 main components: UserCon
 - UserService: Business logic layer
 - UserRepository: Data access layer
 - Design Pattern: Repository pattern, MVC architecture
+
+### Security Findings
+- [HIGH] SQL injection vulnerability in UserRepository.findById()
+- [MEDIUM] Lack of input validation in UserController.createUser()
+
+### Performance Analysis
+- [MEDIUM] N+1 query problem in UserService.getUsersWithOrders()
+- [LOW] String concatenation in loop in ReportGenerator.generate()
 
 ### Findings
 
@@ -169,28 +229,87 @@ This codebase contains a Spring Boot application with 3 main components: UserCon
 - Remove unused imports to reduce clutter
 ```
 
+### Python Code Analyzer Example
+
+```
+### Summary
+This codebase contains a FastAPI application with 3 main modules: user_controller, user_service, and user_repository.
+
+### Architecture
+- user_controller: REST API layer
+- user_service: Business logic layer
+- user_repository: Data access layer
+- Design Pattern: Repository pattern, Clean Architecture
+
+### Security Findings
+- [HIGH] SQL injection vulnerability in user_repository.get_user()
+- [MEDIUM] Hardcoded API key in config.py
+- [LOW] Use of eval() in utils.py
+
+### Performance Analysis
+- [MEDIUM] Inefficient loop in data_processor.process()
+- [LOW] String concatenation in loop in report_generator.generate()
+
+### Code Quality Assessment
+- [MEDIUM] Missing type hints in user_service.py
+- [LOW] Inconsistent docstring style (mix of Google and NumPy)
+
+### Findings
+
+**Strengths:**
+- Clean module organization
+- Proper use of async/await
+- Good separation of concerns
+
+**Issues:**
+- [HIGH] Mutable default argument in user_service.create_user()
+- [MEDIUM] Missing __init__.py in models directory
+- [LOW] Unused import in utils.py
+
+**Suggestions:**
+- Replace mutable default argument with None
+- Add __init__.py to models directory
+- Remove unused imports
+```
+
 ## Development
 
-### Modifying the Skill
+### Modifying the Skills
 
-To modify the skill's behavior, edit `.devin/skills/java-code-analyzer/SKILL.md`. The file contains:
+To modify a skill's behavior, edit the corresponding SKILL.md file:
 
+- **Java Code Analyzer**: `.devin/skills/java-code-analyzer/SKILL.md`
+- **Python Code Analyzer**: `.devin/skills/python-code-analyzer/SKILL.md`
+
+Each file contains:
 1. **Frontmatter**: Metadata (name, description, allowed-tools, permissions)
 2. **Prompt Content**: Instructions for the AI agent
 
-### Testing the Skill
+### Testing the Skills
 
-After making changes, test the skill:
+After making changes, test the corresponding skill:
 
 ```bash
 /java-code-analyzer
+# or
+/python-code-analyzer
 ```
 
 Iterate on the prompt until the output matches your expectations.
 
+### Adding New Skills
+
+To add a new language analyzer:
+
+1. Create a new directory: `.devin/skills/<language>-code-analyzer/`
+2. Create a SKILL.md file with appropriate frontmatter and prompt content
+3. Update this README with the new skill
+4. Test the skill thoroughly
+5. Commit and push the changes
+
 ## License
 
-This skill is provided as-is for educational and development purposes.
+These skills are provided as-is for educational and development purposes.
 
 ## Contributing
 
@@ -209,6 +328,11 @@ This project includes comprehensive documentation for AI agents, governance, and
   - [Secure Coding](docs/knowledge-base/security/secure-coding.md)
   - [Performance Optimization](docs/knowledge-base/performance/optimization.md)
   - [Testing Strategies](docs/knowledge-base/testing/testing-strategies.md)
+
+### Skill-Specific Documentation
+
+- **[Java Code Analyzer SKILL.md](.devin/skills/java-code-analyzer/SKILL.md)** - Full Java skill definition
+- **[Python Code Analyzer SKILL.md](.devin/skills/python-code-analyzer/SKILL.md)** - Full Python skill definition
 
 ## Related Resources
 
