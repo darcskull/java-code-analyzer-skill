@@ -137,6 +137,19 @@ This skill is provided as-is for educational and development purposes.
 
 Feel free to submit issues and pull requests to improve the skill's capabilities.
 
+## Documentation
+
+This project includes comprehensive documentation for AI agents, governance, and best practices:
+
+- **[Agents.md](Agents.md)** - AI agent behavior rules and guidelines
+- **[Governance](docs/governance/governance.md)** - Project governance policies and procedures
+- **[Knowledge Base](docs/knowledge-base/)** - Reference materials and best practices
+  - [Java Coding Conventions](docs/knowledge-base/java-best-practices/coding-conventions.md)
+  - [Design Patterns](docs/knowledge-base/design-patterns/common-patterns.md)
+  - [Secure Coding](docs/knowledge-base/security/secure-coding.md)
+  - [Performance Optimization](docs/knowledge-base/performance/optimization.md)
+  - [Testing Strategies](docs/knowledge-base/testing/testing-strategies.md)
+
 ## Related Resources
 
 - [Devin CLI Documentation](https://devin.ai/docs)

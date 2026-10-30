@@ -28,3 +28,12 @@ Thumbs.db
 *.bak
 *.swp
 *~
+
+# Local configuration (secrets, API keys, MCP configs)
+mcp-config.json
+mcp_config.json
+mcp_config.local.json
+.env
+.env.local
+*.local
+secrets/
